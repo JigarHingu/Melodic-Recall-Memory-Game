@@ -25,6 +25,10 @@ Melodic Recall is a simple memory game where players must repeat a pattern of co
 
 Melodic Recall Memory Game is a project created for fun and to improve memory and reaction skills. It's a great way to challenge yourself and compete with friends to see who can achieve the highest level.
 
+## Live
+
+**Visit Link** :- https://jigarhingu.github.io/Melodic-Recall-Memory-Game/
+
 ## Contributing
 
 Contributions are welcome! If you have any ideas for improvements or new features, feel free to open an issue or create a pull request.

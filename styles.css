@@ -10,6 +10,27 @@ body {
   color: #FEF2BF;
 }
 
+#start-button {
+  background-color: #FEF2BF;
+  margin-top: 15px;
+  border: 5px solid black;
+  cursor: pointer;
+  border-radius: 15%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  color: #011F3F;
+  animation: blink-animation 0.8s infinite alternate;
+}
+
+@keyframes blink-animation {
+  0% {
+    opacity: 1; 
+  }
+  100% {
+    opacity: 0; 
+  }
+}
+
 .container {
   display: block;
   width: 50%;
@@ -65,6 +86,6 @@ body {
 }
 
 .note, p{
-  font-family: cursive;
+  font-family: 'Press Start 2P';
   font-weight: 100;
 }

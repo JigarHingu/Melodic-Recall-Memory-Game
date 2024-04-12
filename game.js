@@ -6,36 +6,18 @@ var level = 0;
 var highestLevel = 0;
 var highestScorer = "";
 
-$(document).keypress(function (event) {
+// Function to handle keypress event
+function keypressHandler(event) {
+  // If the game is over and the key pressed is the space key
   if (!started && event.key === " ") {
     $(".note").hide(); // Hide the note
     $("#level-title").text("Level " + level);
     nextSequence();
     started = true;
-  }
-});
-
-$(document).keypress(function (event) {
-  if (!started && event.key === " ") {
-    var username = $("#username").val();
-    $("#level-title").text("Level " + level);
-    nextSequence();
-    started = true;
-  }
-});
-
-$(".btn").click(function () {
-  var userChosenColour = $(this).attr("id");
-  userClickedPattern.push(userChosenColour);
-
-  playSound(userChosenColour);
-  animatePress(userChosenColour);
-
-  checkAnswer(userClickedPattern.length - 1);
-});
-
-$(document).keypress(function (event) {
-  if (started) {
+    // Hide the space button
+    $("#start-button").hide();
+  } else if (started) { // If the game has started
+    // Handle keypress based on the pressed key
     switch (event.key.toUpperCase()) {
       case "W":
         $("#" + buttonColours[2]).click();
@@ -51,7 +33,34 @@ $(document).keypress(function (event) {
         break;
     }
   }
+}
+
+// Event listener for the start button
+$("#start-button").click(function () {
+  if (!started) {
+    $(".note").hide(); // Hide the note
+    $("#level-title").text("Level " + level);
+    nextSequence();
+    started = true;
+    // Hide the start button
+    $("#start-button").hide();
+  }
 });
+
+$(".btn").click(function () {
+  if (started) {
+    var userChosenColour = $(this).attr("id");
+    userClickedPattern.push(userChosenColour);
+
+    playSound(userChosenColour);
+    animatePress(userChosenColour);
+
+    checkAnswer(userClickedPattern.length - 1);
+  }
+});
+
+// Keypress event listener
+$(document).keypress(keypressHandler);
 
 function checkAnswer(currentLevel) {
   if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
@@ -68,6 +77,8 @@ function checkAnswer(currentLevel) {
     setTimeout(function () {
       $("body").removeClass("game-over");
     }, 200);
+    // Show the space button after game over
+    $("#start-button").show();
 
     startOver();
   }
